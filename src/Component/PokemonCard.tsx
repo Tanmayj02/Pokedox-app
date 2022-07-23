@@ -1,46 +1,93 @@
 import { useEffect, useState } from "react";
+import { Col, Container, Row } from "react-bootstrap";
 import Pokemon from "./Pokemon";
-
-const url: string = "https://pokeapi.co/api/v2/pokemon";
 
 const PokemonCard = () => {
   const [allPokemon, setAllPokemon] = useState<any>([]);
+  const [nextUrl, setNextUrl] = useState<string>("");
+  const [previousUrl, setPreviousUrl] = useState<string>("");
+  const [currUrl, setCurrUrl] = useState<string>(
+    "https://pokeapi.co/api/v2/pokemon"
+  );
 
   const fetchPokemon = async () => {
-    const initial = await fetch(url);
-    const initialJson = await initial.json();
-    //console.log(initialJson.results);
+    const initialResponse = await fetch(currUrl);
+    const initialResponseJson = await initialResponse.json();
+    setNextUrl(initialResponseJson.next);
+    setPreviousUrl(initialResponseJson.previous);
 
-    const detailsData = initialJson.results.map(async (i: any) => {
-      const preFetchData = await fetch(i.url);
-      return preFetchData.json();
-    });
-
-    // uncomment this code if you want to see how it looks await Promise.all(detailsData)
-    // const response = await Promise.all(detailsData)
-    // console.log(response)
-    const payload = (await Promise.all(detailsData)).map((data: any) => ({
-      //   setAllPokemon({name: data.name,
-      //   image: data.sprites["front_default"],})
-      name: data.name,
-      image: data.sprites["front_default"],
+    const allPokeData = initialResponseJson.results.map(
+      async (pokeInitDetail: any) => {
+        const pokeInitData = await fetch(pokeInitDetail.url);
+        return pokeInitData.json();
+      }
+    );
+    // https://pokeapi.co/api/v2/encounter-method/{id or name}/
+    const payload = (await Promise.all(allPokeData)).map((singlePoke: any) => ({
+      name: singlePoke.name,
+      image: singlePoke.sprites.other.dream_world.front_default,
+      height: singlePoke.height,
+      weight: singlePoke.weight,
+      attack: singlePoke.stats[0].base_stat,
     }));
 
-    //console.log(payload);
+    console.log(payload);
     setAllPokemon(payload);
   };
 
   useEffect(() => {
     fetchPokemon();
-  }, []);
+  }, [currUrl]);
 
   const ShowAllPokemon = () => {
-    return allPokemon.map((poke: any) => (
-      <Pokemon key={poke.name} name={poke.name} image={poke.image} />
+    return allPokemon.map((singlePoke: { name: string; image: string }) => (
+      <Pokemon
+        key={singlePoke.name}
+        name={singlePoke.name}
+        image={singlePoke.image}
+      />
     ));
   };
 
-  return <div> {ShowAllPokemon()}</div>;
+  const prevButton = () => {
+    if (previousUrl)
+      return (
+        <div>
+          <button
+            onClick={() => {
+              window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+              setCurrUrl(previousUrl);
+            }}
+          >
+            Previous Page
+          </button>
+        </div>
+      );
+    else return null;
+  };
+
+  const nextButton = () => {
+    if (nextUrl)
+      return (
+        <button
+          onClick={() => {
+            window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+            setCurrUrl(nextUrl);
+          }}
+        >
+          next Page
+        </button>
+      );
+    else return null;
+  };
+
+  return (
+    <div>
+      {ShowAllPokemon()}
+      {prevButton()}
+      {nextButton()}
+    </div>
+  );
 };
 
 export default PokemonCard;
