@@ -10,12 +10,20 @@ BOOTSTRAP
 import "../node_modules/react-bootstrap/dist/react-bootstrap";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
+import { Provider } from "react-redux";
+import store from "./Redux/Store/Store";
+import { fetchPokemons } from "./Redux/ReduxSlice/PokemonSlice";
+
+store.dispatch(fetchPokemons());
+
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>
 );
 

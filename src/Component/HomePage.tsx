@@ -1,9 +1,9 @@
-import Pokemon from "./PokemonCard";
+import PokemonCard from "./PokemonCard";
 
 const HomePage = () => {
   return (
     <div>
-      <Pokemon />
+      <PokemonCard />
     </div>
   );
 };
