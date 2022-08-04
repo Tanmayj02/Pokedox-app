@@ -13,7 +13,7 @@ const FetchItem = () => {
   const [pokemonList, setPokemonList] = useState<any>([]);
 
   const getDataFromAPI = () => {
-    for (let i = 1; i < 2; i++) {
+    for (let i = 1; i < 50; i++) {
       fetch(`https://pokeapi.co/api/v2/pokemon/${i}/`)
         .then((res) => res.json())
         .then((data) => {
@@ -29,7 +29,7 @@ const FetchItem = () => {
           setPokemonList((prevState: any) => [
             ...prevState,
             {
-              itemName: name,
+              username: name,
               id: id.toString(),
               base_experience: base_experience,
               abilities: abilities,
@@ -47,7 +47,7 @@ const FetchItem = () => {
   const showPokemon = () => {
     return pokemonList.map((singlePoke: any) => (
       <div>
-        {singlePoke.itemName}
+        {singlePoke.username}
         {singlePoke.id}
       </div>
     ));
@@ -55,7 +55,7 @@ const FetchItem = () => {
 
   const putPokemon = (payload: any) => {
     fetch(
-      "https://2y2g1bd5wl.execute-api.ap-south-1.amazonaws.com/CorsEnabled/pokemon/",
+      "https://2y2g1bd5wl.execute-api.ap-south-1.amazonaws.com/CorsEnabled/pokemon",
       {
         method: "POST",
         body: JSON.stringify(payload),
