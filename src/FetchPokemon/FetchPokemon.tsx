@@ -1,17 +1,44 @@
+import { stat } from "fs/promises";
 import { useEffect, useState } from "react";
 
+// pokemon
+/// data -> name, id, base_experience, abilities, sprites (contains images), stats, weight
+
+// abilities
+// data -> effect_entries, id, name, pokemon
+
+// types
+/// data -> id, name, pokemon
 const FetchItem = () => {
-  const url = "https://pokeapi.co/api/v2/pokemon/1/";
   const [pokemonList, setPokemonList] = useState<any>([]);
 
   const getDataFromAPI = () => {
-    for (let i = 1; i < 500; i++) {
+    for (let i = 1; i < 2; i++) {
       fetch(`https://pokeapi.co/api/v2/pokemon/${i}/`)
         .then((res) => res.json())
         .then((data) => {
+          const {
+            name,
+            id,
+            base_experience,
+            abilities,
+            sprites,
+            stats,
+            weight,
+          } = data;
           setPokemonList((prevState: any) => [
             ...prevState,
-            { username: data.name, id: i },
+            {
+              itemName: name,
+              id: id.toString(),
+              base_experience: base_experience,
+              abilities: abilities,
+              //   frontImage: sprites.other.dream_world.front_default,
+              //   extraImage: sprites.other.home.front_default,
+              sprites: sprites,
+              stats: stats,
+              weight: weight,
+            },
           ]);
         });
     }
@@ -20,7 +47,7 @@ const FetchItem = () => {
   const showPokemon = () => {
     return pokemonList.map((singlePoke: any) => (
       <div>
-        {singlePoke.username}
+        {singlePoke.itemName}
         {singlePoke.id}
       </div>
     ));
@@ -46,6 +73,7 @@ const FetchItem = () => {
     pokemonList.map((pokemon: any) => {
       putPokemon(pokemon);
     });
+    // putPokemon(pokemonList);
   };
 
   //   useEffect(() => {
