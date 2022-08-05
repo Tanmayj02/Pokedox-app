@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import HomePage from "./Component/HomePage";
-import FetchItem from "./FetchPokemon/FetchPokemon";
+// import FetchItem from "./FetchPokemon/FetchPokemon";
 
 function App() {
   return (

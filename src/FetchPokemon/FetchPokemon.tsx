@@ -1,5 +1,9 @@
-import { stat } from "fs/promises";
-import { useEffect, useState } from "react";
+/* eslint-disable no-alert */
+/* eslint-disable implicit-arrow-linebreak */
+/* eslint-disable array-callback-return */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable react/button-has-type */
+import { useState } from "react";
 
 // pokemon
 /// data -> name, id, base_experience, abilities, sprites (contains images), stats, weight
@@ -9,11 +13,11 @@ import { useEffect, useState } from "react";
 
 // types
 /// data -> id, name, pokemon
-const FetchItem = () => {
+function FetchItem() {
   const [pokemonList, setPokemonList] = useState<any>([]);
 
   const getDataFromAPI = () => {
-    for (let i = 1; i < 50; i++) {
+    for (let i = 1; i < 50; i += 1) {
       fetch(`https://pokeapi.co/api/v2/pokemon/${i}/`)
         .then((res) => res.json())
         .then((data) => {
@@ -31,27 +35,26 @@ const FetchItem = () => {
             {
               username: name,
               id: id.toString(),
-              base_experience: base_experience,
-              abilities: abilities,
+              base_experience,
+              abilities,
               //   frontImage: sprites.other.dream_world.front_default,
               //   extraImage: sprites.other.home.front_default,
-              sprites: sprites,
-              stats: stats,
-              weight: weight,
+              sprites,
+              stats,
+              weight,
             },
           ]);
         });
     }
   };
 
-  const showPokemon = () => {
-    return pokemonList.map((singlePoke: any) => (
+  const showPokemon = () =>
+    pokemonList.map((singlePoke: any) => (
       <div>
         {singlePoke.username}
         {singlePoke.id}
       </div>
     ));
-  };
 
   const putPokemon = (payload: any) => {
     fetch(
@@ -59,12 +62,11 @@ const FetchItem = () => {
       {
         method: "POST",
         body: JSON.stringify(payload),
-      }
+        // eslint-disable-next-line @typescript-eslint/comma-dangle
+      },
     )
-      .then(function (res) {
-        return res.json();
-      })
-      .then(function (data) {
+      .then((res) => res.json())
+      .then((data) => {
         alert(JSON.stringify(data));
       });
   };
@@ -89,6 +91,6 @@ const FetchItem = () => {
       <div>{showPokemon()}</div>
     </div>
   );
-};
+}
 
 export default FetchItem;

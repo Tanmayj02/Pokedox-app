@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import Pokemon from "./Pokemon";
 
-const PokemonCard = () => {
+function PokemonCard() {
   const ShowAllPokemon = () => {
     const allPokemons: any = useSelector((state: any) => state.pokemons);
 
@@ -15,6 +15,6 @@ const PokemonCard = () => {
   };
 
   return <div>{ShowAllPokemon()}</div>;
-};
+}
 
 export default PokemonCard;

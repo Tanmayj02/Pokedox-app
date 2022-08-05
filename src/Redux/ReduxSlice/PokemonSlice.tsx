@@ -1,3 +1,4 @@
+/* eslint-disable no-await-in-loop */
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 const initialState: any = [];
@@ -6,13 +7,13 @@ export const fetchPokemons = createAsyncThunk(
   "pokemons/fetchPokemons",
   async () => {
     try {
-      let pokemonList: any = [];
-      for (let i = 1; i <= 10; i++) {
+      const pokemonList: any = [];
+      for (let i = 1; i <= 10; i += 1) {
         const initialResponse = await fetch(
-          `https://2y2g1bd5wl.execute-api.ap-south-1.amazonaws.com/Dev/pokemon/${i}`
+          `https://2y2g1bd5wl.execute-api.ap-south-1.amazonaws.com/Dev/pokemon/${i}`,
         );
         const response = await initialResponse.json();
-        let currentPokemonDetail: { name: string; image: string } = {
+        const currentPokemonDetail: { name: string; image: string } = {
           name: "",
           image: "",
         };
@@ -25,7 +26,7 @@ export const fetchPokemons = createAsyncThunk(
     } catch (error: any) {
       return error.message;
     }
-  }
+  },
 );
 
 const pokemonsSlice: any = createSlice({
@@ -33,13 +34,10 @@ const pokemonsSlice: any = createSlice({
   initialState,
   reducers: {},
   extraReducers(builder) {
-    builder.addCase(fetchPokemons.fulfilled, (state, action) => {
-      //console.log("here" + JSON.stringify(action.payload));
-      return action.payload;
-    });
+    builder.addCase(fetchPokemons.fulfilled, (state, action) => action.payload);
   },
 });
 
-export const {} = pokemonsSlice.actions;
+// export const {} = pokemonsSlice.actions;
 
 export default pokemonsSlice.reducer;
