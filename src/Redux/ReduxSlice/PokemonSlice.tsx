@@ -7,18 +7,18 @@ export const fetchPokemons = createAsyncThunk(
   async () => {
     try {
       let pokemonList: any = [];
-      for (let i = 1; i <= 20; i++) {
+      for (let i = 1; i <= 10; i++) {
         const initialResponse = await fetch(
-          `https://pokeapi.co/api/v2/pokemon/${i}`
+          `https://2y2g1bd5wl.execute-api.ap-south-1.amazonaws.com/Dev/pokemon/${i}`
         );
         const response = await initialResponse.json();
         let currentPokemonDetail: { name: string; image: string } = {
           name: "",
           image: "",
         };
-        currentPokemonDetail.name = response.name;
+        currentPokemonDetail.name = response.Items[0].username;
         currentPokemonDetail.image =
-          response.sprites.other.dream_world.front_default;
+          response.Items[0].sprites.other.dream_world.front_default;
         pokemonList.push(currentPokemonDetail);
       }
       return pokemonList;
@@ -34,6 +34,7 @@ const pokemonsSlice: any = createSlice({
   reducers: {},
   extraReducers(builder) {
     builder.addCase(fetchPokemons.fulfilled, (state, action) => {
+      //console.log("here" + JSON.stringify(action.payload));
       return action.payload;
     });
   },

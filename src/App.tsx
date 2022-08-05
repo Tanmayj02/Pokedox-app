@@ -6,8 +6,8 @@ import FetchItem from "./FetchPokemon/FetchPokemon";
 function App() {
   return (
     <div className="App">
-      {/* <HomePage /> */}
-      <FetchItem />
+      <HomePage />
+      {/* <FetchItem /> */}
     </div>
   );
 }
