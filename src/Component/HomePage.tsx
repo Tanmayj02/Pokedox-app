@@ -1,11 +1,11 @@
-import Pokemon from "./PokemonCard";
+import PokemonCard from "./PokemonCard";
 
-const HomePage = () => {
+function HomePage() {
   return (
     <div>
-      <Pokemon />
+      <PokemonCard />
     </div>
   );
-};
+}
 
 export default HomePage;
