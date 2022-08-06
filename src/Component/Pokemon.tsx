@@ -4,11 +4,15 @@ import { Card, Col, Container } from "react-bootstrap";
 function Pokemon(props: any) {
   const { name, image } = props;
   return (
-    <Col xs={3} sm={3} md={3} lg={2}>
-      <Container>
+    <Col xs={12} sm={6} md={3} lg={4} className="p-3">
+      <Container fluid>
         <Card>
           <Card.Header className="text-center">{name}</Card.Header>
-          <Card.Img src={image} />
+          <Card.Img
+            src={image}
+            className="mx-auto"
+            style={{ width: 300, height: 300 }}
+          />
           <Card.Footer className="text-center">
             <button> Details </button>
           </Card.Footer>

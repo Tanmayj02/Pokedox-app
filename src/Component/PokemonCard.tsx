@@ -1,3 +1,4 @@
+import { Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import Pokemon from "./Pokemon";
 
@@ -13,8 +14,11 @@ function PokemonCard() {
       />
     ));
   };
-
-  return <div>{ShowAllPokemon()}</div>;
+  return (
+    <Container fluid>
+      <Row>{ShowAllPokemon()}</Row>
+    </Container>
+  );
 }
 
 export default PokemonCard;

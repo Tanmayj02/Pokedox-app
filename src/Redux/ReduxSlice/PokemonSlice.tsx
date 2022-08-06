@@ -8,7 +8,7 @@ export const fetchPokemons = createAsyncThunk(
   async () => {
     try {
       const pokemonList: any = [];
-      for (let i = 1; i <= 10; i += 1) {
+      for (let i = 1; i <= 20; i += 1) {
         const initialResponse = await fetch(
           `https://2y2g1bd5wl.execute-api.ap-south-1.amazonaws.com/Dev/pokemon/${i}`,
         );
