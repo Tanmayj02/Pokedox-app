@@ -1,0 +1,13 @@
+.imagefooter {
+  margin-top: 5px;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  user-select: none;
+  -webkit-transition: 0.3s ease-in-out;
+  transition: 0.4s ease-in-out;
+}
+.imagefooter:hover {
+  -webkit-transform: scale(1.11);
+  transform: scale(1.11);
+}

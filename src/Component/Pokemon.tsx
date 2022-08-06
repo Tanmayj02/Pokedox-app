@@ -12,11 +12,11 @@ function Pokemon(props: any) {
           </Card.Header>
           <Card.Img
             src={image}
-            className="mx-auto p-3 mt-2 mb-2 bg-gradient-primary img-fluid rounded"
+            className="imagefooter mx-auto p-4 bg-gradient-primary img-fluid rounded"
             style={{ width: 300, height: 300 }}
           />
           <Card.Footer className="text-center p-2 bg-gradient-secondary text-black">
-            <button className="btn btn-light"> Explore Pokemon </button>
+            <button className="btn btn-light"> Explore {name} </button>
           </Card.Footer>
         </Card>
       </Container>
