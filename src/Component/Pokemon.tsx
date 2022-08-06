@@ -7,18 +7,18 @@ function Pokemon(props: any) {
     <Col xs={12} sm={6} md={3} lg={4} className="p-3">
       <Container fluid>
         <Card>
-          <Card.Header className="text-center">{name}</Card.Header>
+          <Card.Header className="text-center p-2 bg-gradient-secondary text-black">
+            {name}
+          </Card.Header>
           <Card.Img
             src={image}
-            className="mx-auto"
+            className="mx-auto p-3 mt-2 mb-2 bg-gradient-primary img-fluid rounded"
             style={{ width: 300, height: 300 }}
           />
-          <Card.Footer className="text-center">
-            <button> Details </button>
+          <Card.Footer className="text-center p-2 bg-gradient-secondary text-black">
+            <button className="btn btn-light"> Explore Pokemon </button>
           </Card.Footer>
         </Card>
-        {/* <h5> {props.name} </h5>
-        <img src={props.image} alt={props.name} /> */}
       </Container>
     </Col>
   );

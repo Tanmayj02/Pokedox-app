@@ -5,7 +5,10 @@ import HomePage from "./Component/HomePage";
 
 function App() {
   return (
-    <div className="App">
+    <div className="App bg-light">
+      <div className="p-3 text-center bg-light">
+        <h1 className="mb-1">Welcome to Pokedox</h1>
+      </div>
       <HomePage />
       {/* <FetchItem /> */}
     </div>
