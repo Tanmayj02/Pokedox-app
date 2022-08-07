@@ -13,13 +13,12 @@ export const fetchPokemons = createAsyncThunk(
           `https://2y2g1bd5wl.execute-api.ap-south-1.amazonaws.com/Dev/pokemon/${i}`,
         );
         const response = await initialResponse.json();
-        const currentPokemonDetail: { name: string; image: string } = {
-          name: "",
-          image: "",
-        };
-        currentPokemonDetail.name = response.Items[0].username;
-        currentPokemonDetail.image =
-          response.Items[0].sprites.other.dream_world.front_default;
+        // const currentPokemonDetail: any = {};
+        // currentPokemonDetail.name = response.Items[0].username;
+        // currentPokemonDetail.image =
+        //   response.Items[0].sprites.other.dream_world.front_default;
+
+        const currentPokemonDetail: any = { ...response.Items[0] };
         pokemonList.push(currentPokemonDetail);
       }
       return pokemonList;

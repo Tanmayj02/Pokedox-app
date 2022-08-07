@@ -6,11 +6,11 @@ function PokemonCard() {
   const ShowAllPokemon = () => {
     const allPokemons: any = useSelector((state: any) => state.pokemons);
 
-    return allPokemons.map((singlePoke: { name: string; image: string }) => (
+    return allPokemons.map((singlePoke: any) => (
       <Pokemon
-        key={singlePoke.name}
-        name={singlePoke.name}
-        image={singlePoke.image}
+        key={singlePoke.username}
+        name={singlePoke.username}
+        image={singlePoke.sprites.other.dream_world.front_default}
       />
     ));
   };
