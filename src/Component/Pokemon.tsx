@@ -12,7 +12,7 @@ function Pokemon(props: any) {
           </Card.Header>
           <Card.Img
             src={image}
-            className="imagefooter mx-auto p-4 bg-gradient-primary img-fluid rounded"
+            className="imagecard mx-auto p-4 bg-gradient-primary img-fluid"
             style={{ width: 300, height: 300 }}
           />
           <Card.Footer className="text-center p-2 bg-gradient-secondary text-black">
