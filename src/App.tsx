@@ -8,7 +8,7 @@ import PokemonCharateristics from "./Component/PokemonCharacteristics";
 
 function App() {
   return (
-    <BrowserRouter basename="/pokemon">
+    <BrowserRouter>
       <Container fluid className="App bg-light">
         <Routes>
           <Route path="/" element={<HomePage />} />
